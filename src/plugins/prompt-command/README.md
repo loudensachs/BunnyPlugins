@@ -11,4 +11,4 @@
 
 <h1 align="center">Prompt Command</h1>
 
-A plugin to prompt with ChatGPT
+A plugin to generate messages with GPT-4o

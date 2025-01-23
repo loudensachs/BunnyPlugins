@@ -51,7 +51,7 @@
   - [<img alt="copy_link" src="https://img.shields.io/badge/copy_link-1e2030?style=for-the-badge" />](https://bunny.nexpid.xyz/plugin-browser) [<img alt="view_code" src="https://img.shields.io/badge/view_code-363a4f?style=for-the-badge" />](https://github.com/nexpid/BunnyPlugins/tree/dev/src/plugins/plugin-browser)
 - Plugin Embeds — Shows an embed with plugin info when a plugin link is sent in chat
   - [<img alt="copy_link" src="https://img.shields.io/badge/copy_link-1e2030?style=for-the-badge" />](https://bunny.nexpid.xyz/plugin-embeds) [<img alt="view_code" src="https://img.shields.io/badge/view_code-363a4f?style=for-the-badge" />](https://github.com/nexpid/BunnyPlugins/tree/dev/src/plugins/plugin-embeds)
-- Prompt Command — A plugin to prompt with ChatGPT
+- Prompt Command — A plugin to generate messages with GPT-4o
   - [<img alt="copy_link" src="https://img.shields.io/badge/copy_link-1e2030?style=for-the-badge" />](https://bunny.nexpid.xyz/prompt-command) [<img alt="view_code" src="https://img.shields.io/badge/view_code-363a4f?style=for-the-badge" />](https://github.com/nexpid/BunnyPlugins/tree/dev/src/plugins/prompt-command)
 - UserPFP — https://userpfp.github.io/UserPFP/#using-userpfp
   - [<img alt="copy_link" src="https://img.shields.io/badge/copy_link-1e2030?style=for-the-badge" />](https://bunny.nexpid.xyz/userpfp) [<img alt="view_code" src="https://img.shields.io/badge/view_code-363a4f?style=for-the-badge" />](https://github.com/nexpid/BunnyPlugins/tree/dev/src/plugins/userpfp)

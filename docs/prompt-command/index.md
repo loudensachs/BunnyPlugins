@@ -1,6 +1,6 @@
 ---
 title: Prompt Command (by LSCommit)
-description: A plugin to prompt with ChatGPT
+description: A plugin to generate messages with GPT-4o
 ---
 
 <!--
@@ -10,7 +10,7 @@ description: A plugin to prompt with ChatGPT
 
 <div align="center">
 <h1>Prompt Command (by LSCommit)</h1>
-<h3>A plugin to prompt with ChatGPT</h3>
+<h3>A plugin to generate messages with GPT-4o</h3>
 </div>
 
 > **Note**
