@@ -1,4 +1,4 @@
-// Settings.tsx
+// Settings.tsx without useState
 import React from "react";
 import { ReactNative } from "@vendetta/metro/common";
 import { Forms } from "@vendetta/ui/components";
@@ -12,20 +12,16 @@ const { FormIcon, FormTextRow, FormButtonRow } = Forms;
 export default () => {
   useProxy(cstorage);
 
-  const [apiKey, setApiKey] = React.useState(cstorage.openai_api_key);
-
   const saveApiKey = () => {
-    if (!apiKey.trim()) {
+    if (!cstorage.openai_api_key.trim()) {
       showToast("API key cannot be empty.", getAssetIDByName("ic_error"));
       return;
     }
-    cstorage.openai_api_key = apiKey.trim();
     showToast("OpenAI API key saved.", getAssetIDByName("ic_success"));
   };
 
   const clearApiKey = () => {
     cstorage.openai_api_key = "";
-    setApiKey("");
     showToast("OpenAI API key cleared.", getAssetIDByName("ic_success"));
   };
 
@@ -34,8 +30,10 @@ export default () => {
       <FormTextRow
         label="OpenAI API Key"
         placeholder="Enter your OpenAI API key"
-        value={apiKey}
-        onChangeText={setApiKey}
+        value={cstorage.openai_api_key}
+        onChangeText={(text) => {
+          cstorage.openai_api_key = text;
+        }}
         secureTextEntry
         leading={<FormIcon source={getAssetIDByName("ic_key")} />}
       />
