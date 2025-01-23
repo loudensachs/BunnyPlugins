@@ -1,52 +1,58 @@
-// Settings.tsx without useState
-import React from "react";
-import { ReactNative } from "@vendetta/metro/common";
+import { ReactNative, stylesheet } from "@vendetta/metro/common";
 import { Forms } from "@vendetta/ui/components";
-import { showToast } from "@vendetta/ui/toasts";
+import { showConfirmationAlert } from "@vendetta/ui/alerts";
 import { getAssetIDByName } from "@vendetta/ui/assets";
+import { showToast } from "@vendetta/ui/toasts";
 import { useProxy } from "@vendetta/storage";
-import { cstorage } from "."; // Adjust the import path as necessary
+import { storage } from "@vendetta/plugin";
+import { cstorage } from ".";
+import { showInputAlert } from '@vendetta/ui/alerts'
+import { FluxDispatcher } from "@vendetta/metro/common";
+import { semanticColors } from '@vendetta/ui'
+import Text from "$/components/Text";
 
-const { FormIcon, FormTextRow, FormButtonRow } = Forms;
+const styles = stylesheet.createThemedStyleSheet({
+  destructiveIcon: {
+    tintColor: semanticColors.TEXT_DANGER,
+  },
+})
+const destructiveText: Parameters<typeof Text>[0] = {
+  color: 'TEXT_DANGER',
+  variant: 'text-md/semibold',
+}
+
+
+const { FormIcon, FormSwitchRow, FormRow } = Forms;
+
+// Initialize default value for the setting if not present
+storage.saveEditsOnUnload ??= true;
 
 export default () => {
+  useProxy(storage);
   useProxy(cstorage);
 
-  const saveApiKey = () => {
-    if (!cstorage.openai_api_key.trim()) {
-      showToast("API key cannot be empty.", getAssetIDByName("ic_error"));
-      return;
-    }
-    showToast("OpenAI API key saved.", getAssetIDByName("ic_success"));
-  };
-
-  const clearApiKey = () => {
-    cstorage.openai_api_key = "";
-    showToast("OpenAI API key cleared.", getAssetIDByName("ic_success"));
-  };
-
   return (
-    <ReactNative.ScrollView style={{ padding: 16 }}>
-      <FormTextRow
-        label="OpenAI API Key"
-        placeholder="Enter your OpenAI API key"
-        value={cstorage.openai_api_key}
-        onChangeText={(text) => {
-          cstorage.openai_api_key = text;
+    <ReactNative.ScrollView>
+      <FormRow
+        label="Set OpenAI API Key"
+        leading={
+          <FormRow.Icon
+            style={styles.destructiveIcon}
+            source={getAssetIDByName('TrashIcon')}
+          />
+        }
+        onPress={() => {
+          showInputAlert({
+            title: 'Set OpenAI API Key',
+            confirmText: 'Set',
+            confirmColor: 'blue' as ButtonColors,
+            onConfirm: (apiKey) => {
+              cstorage.openai_api_key = apiKey;
+              showToast('OpenAI API Key set successfully');
+            },
+            initialValue: cstorage.openai_api_key,
+          });
         }}
-        secureTextEntry
-        leading={<FormIcon source={getAssetIDByName("ic_key")} />}
-      />
-      <FormButtonRow
-        label="Save API Key"
-        leading={<FormIcon source={getAssetIDByName("ic_save")} />}
-        onPress={saveApiKey}
-      />
-      <FormButtonRow
-        label="Clear API Key"
-        leading={<FormIcon source={getAssetIDByName("ic_delete")} />}
-        onPress={clearApiKey}
-        destructive
       />
     </ReactNative.ScrollView>
   );
