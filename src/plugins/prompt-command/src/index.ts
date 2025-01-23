@@ -1,11 +1,22 @@
 import { registerCommand } from "@vendetta/commands";
-import { storage } from "@vendetta/plugin";
+import { storage } from '@vendetta/plugin';
+import settings from './Settings';
 import { logger } from "@vendetta";
 import { showToast } from "@vendetta/ui/toasts";
 import { getAssetIDByName } from "@vendetta/ui/assets";
 
+export interface CStorage {
+  openai_api_key: string;
+  // Add any additional properties you need here
+  // For example:
+  // edits: Record<string, Record<string, EditInfo>>,
+  // saveEditsOnUnload?: boolean
+}
+
+export const cstorage = storage as CStorage;
 // Command variable for unregistration
 let chatGPTCommand: () => void;
+
 
 // Function to call OpenAI's ChatGPT API
 async function callChatGPT(prompt: string, apiKey: string): Promise<string> {
@@ -57,7 +68,7 @@ export const onLoad = () => {
       },
     ],
     execute: async ([prompt], ctx) => {
-      const apiKey = storage.openai_api_key;
+      const apiKey = cstorage.openai_api_key;
       if (!apiKey) {
         showToast("OpenAI API key not set. Please set it in the plugin settings.", getAssetIDByName("ic_error"));
         return { content: "" };
