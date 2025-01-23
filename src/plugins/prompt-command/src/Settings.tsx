@@ -1,5 +1,5 @@
 // Settings.tsx
-import React, { useState } from "react";
+import React from "react";
 import { ReactNative } from "@vendetta/metro/common";
 import { Forms } from "@vendetta/ui/components";
 import { showToast } from "@vendetta/ui/toasts";
@@ -11,7 +11,8 @@ const { FormIcon, FormTextRow, FormButtonRow } = Forms;
 
 export default () => {
   useProxy(cstorage);
-  const [apiKey, setApiKey] = useState(cstorage.openai_api_key || "");
+
+  const [apiKey, setApiKey] = React.useState(cstorage.openai_api_key);
 
   const saveApiKey = () => {
     if (!apiKey.trim()) {
