@@ -74,13 +74,13 @@ export const onLoad = () => {
         return { content: "" };
       }
     
-      if (typeof prompt !== "string") {
-        showToast("❌ Error: Prompt must be a string. Type is: " + typeof prompt, getAssetIDByName("ic_error"));
-        return { content: prompt.toString() };
+      if (typeof prompt.content !== "string") {
+        showToast("❌ Error: Prompt must be a string. Type is: " + typeof prompt.content, getAssetIDByName("ic_error"));
+        return { content: prompt.content.toString() };
       }
     
       try {
-        const response = await callChatGPT(prompt, apiKey);
+        const response = await callChatGPT(prompt.content, apiKey);
         return { content: response };
       } catch (error) {
         showToast(`❌ Error: ${(error as Error).message}`, getAssetIDByName("ic_error"));
