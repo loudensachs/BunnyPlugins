@@ -82,11 +82,12 @@ export const onLoad = () => {
     
       try {
         var fullPrompt = "A discord user has invoked the command 'chatgpt' which should return a generated message. They prompted, this: " + prompt;
-        if (storage.signature === true) {
-          fullPrompt += "\n-# This message was generated with GPT-4o";
-        }
         const response = await callChatGPT(fullPrompt, apiKey);
-        return { content: response };
+        var responseMSG = response;
+        if (storage.signature === true) {
+          responseMSG += "\n-# This message was generated with GPT-4o";
+        }
+        return { content: responseMSG };
       } catch (error) {
         const errorMessage = `❌ Error: ${(error as Error).message}`;
         showToast(errorMessage, getAssetIDByName("ic_error"));

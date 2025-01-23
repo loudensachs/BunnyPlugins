@@ -1,1 +1,1 @@
-{"name":"Prompt Command","description":"A plugin to prompt with ChatGPT","authors":[{"name":"LSCommit","id":""}],"main":"index.js","vendetta":{"icon":"ic_message"},"hash":"7bec835dd9035b88d470dd8c1b5b135be6e2df44632ee560ddf171ebabcf423a"}
+{"name":"Prompt Command","description":"A plugin to prompt with ChatGPT","authors":[{"name":"LSCommit","id":""}],"main":"index.js","vendetta":{"icon":"ic_message"},"hash":"118fbaf1517e47be252873ad63ec266cd4199e9822a203b162e7b277c44c5886"}
