@@ -52,8 +52,8 @@ export const onLoad = () => {
   chatGPTCommand = registerCommand({
     name: "chatgpt",
     displayName: "ChatGPT",
-    description: "Interact with ChatGPT-4o",
-    displayDescription: "Ask ChatGPT-4o a question",
+    description: "Write a message with ChatGPT-4o",
+    displayDescription: "Write a message with ChatGPT-4o",
     type: 1, // CHAT_INPUT
     applicationId: "-1",
     inputType: 1, // String input
@@ -61,7 +61,7 @@ export const onLoad = () => {
       {
         name: "prompt",
         displayName: "Prompt",
-        description: "Your message to ChatGPT",
+        description: "Your prompt to ChatGPT",
         displayDescription: "The prompt to send to ChatGPT",
         type: 3, // STRING
         required: true,
@@ -81,7 +81,11 @@ export const onLoad = () => {
       }
     
       try {
-        const response = await callChatGPT(prompt, apiKey);
+        var fullPrompt = "A discord user has invoked the command 'chatgpt' which should return a generated message. They prompted, this: " + prompt;
+        if (storage.signature === true) {
+          fullPrompt += "\n-# This message was generated with GPT-4o";
+        }
+        const response = await callChatGPT(fullPrompt, apiKey);
         return { content: response };
       } catch (error) {
         const errorMessage = `❌ Error: ${(error as Error).message}`;

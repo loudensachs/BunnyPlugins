@@ -25,7 +25,7 @@ const destructiveText: Parameters<typeof Text>[0] = {
 const { FormIcon, FormSwitchRow, FormRow } = Forms;
 
 // Initialize default value for the setting if not present
-storage.saveEditsOnUnload ??= true;
+storage.signature ??= true;
 
 export default () => {
   useProxy(storage);
@@ -33,12 +33,18 @@ export default () => {
 
   return (
     <ReactNative.ScrollView>
+      <FormSwitchRow
+        label="GPT Signature"
+        leading={<FormIcon source={getAssetIDByName("ic_edit_24px")} />}
+        onValueChange={(v) => (storage.signature = v)}
+        value={storage.signature}
+      />
       <FormRow
         label="Set OpenAI API Key"
         leading={
           <FormRow.Icon
             style={styles.destructiveIcon}
-            source={getAssetIDByName('TrashIcon')}
+            source={getAssetIDByName('ic_globe_24px')}
           />
         }
         onPress={() => {
