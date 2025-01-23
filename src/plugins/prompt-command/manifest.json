@@ -1,0 +1,14 @@
+{
+    "name": "Prompt Command",
+    "description": "A plugin to prompt with ChatGPT",
+    "authors": [
+        {
+            "name": "LSCommit",
+            "id": ""
+        }
+    ],
+    "main": "src/index.ts",
+    "vendetta": {
+        "icon": "ic_list"
+    }
+}
