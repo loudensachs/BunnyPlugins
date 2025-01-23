@@ -50,10 +50,10 @@ async function callChatGPT(prompt: string, apiKey: string): Promise<string> {
 
 export const onLoad = () => {
   chatGPTCommand = registerCommand({
-    name: "chatgpt",
-    displayName: "ChatGPT",
-    description: "Write a message with ChatGPT-4o",
-    displayDescription: "Write a message with ChatGPT-4o",
+    name: "generate",
+    displayName: "Generate",
+    description: "Write a message with GPT-4o",
+    displayDescription: "Write a message with GPT-4o",
     type: 1, // CHAT_INPUT
     applicationId: "-1",
     inputType: 1, // String input
@@ -81,7 +81,7 @@ export const onLoad = () => {
       }
     
       try {
-        var fullPrompt = "A discord user has invoked the command 'chatgpt' which should return a generated message. They prompted, this: " + prompt;
+        var fullPrompt = "A discord user has invoked the command 'generate' which should return a generated message. They prompted, this: " + prompt;
         const response = await callChatGPT(fullPrompt, apiKey);
         var responseMSG = response;
         if (storage.signature === true) {
