@@ -1,10 +1,10 @@
+import React, { useState } from "react";
 import { ReactNative } from "@vendetta/metro/common";
 import { Forms } from "@vendetta/ui/components";
 import { showToast } from "@vendetta/ui/toasts";
 import { getAssetIDByName } from "@vendetta/ui/assets";
 import { storage } from "@vendetta/plugin";
 import { useProxy } from "@vendetta/storage";
-import { useState } from "react";
 
 const { FormIcon, FormTextRow, FormButtonRow } = Forms;
 
