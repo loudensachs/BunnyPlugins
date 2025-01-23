@@ -73,15 +73,20 @@ export const onLoad = () => {
         showToast("OpenAI API key not set. Please set it in the plugin settings.", getAssetIDByName("ic_error"));
         return { content: "" };
       }
-
+    
+      if (typeof prompt !== "string") {
+        showToast("❌ Error: Prompt must be a string.", getAssetIDByName("ic_error"));
+        return { content: "" };
+      }
+    
       try {
         const response = await callChatGPT(prompt, apiKey);
         return { content: response };
       } catch (error) {
         showToast(`❌ Error: ${(error as Error).message}`, getAssetIDByName("ic_error"));
-        return { content: `` };
+        return { content: "" };
       }
-    },
+    },    
   });
 };
 
