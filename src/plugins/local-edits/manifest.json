@@ -1,0 +1,14 @@
+{
+  "name": "Local Message Editor",
+  "description": "Adds a button to locally edit a message",
+  "authors": [
+    {
+      "name": "LSCommit",
+      "id": ""
+    }
+  ],
+  "main": "src/index.ts",
+  "vendetta": {
+    "icon": "ic_edit_24px"
+  }
+}

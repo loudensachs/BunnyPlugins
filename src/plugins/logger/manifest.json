@@ -1,0 +1,14 @@
+{
+    "name": "Message Logger",
+    "description": "A plugin to log deleted messages.",
+    "authors": [
+        {
+            "name": "LSCommit",
+            "id": ""
+        }
+    ],
+    "main": "src/index.ts",
+    "vendetta": {
+        "icon": "ic_badge_staff"
+    }
+}

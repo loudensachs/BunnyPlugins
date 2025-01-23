@@ -1,0 +1,52 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup workspace
+        uses: ./.github/actions/setup
+
+      - name: build plugins
+        run: pnpm build
+
+      - name: update stuff
+        if: ${{ !env.ACT }}
+        run: |
+          if [ ! -z "$(git status -s)" ]; then
+            git add .
+            git commit -m "chore: update docs and lang" || true
+            git pull --ff-only
+            git push
+          fi
+        shell: bash
+
+      - name: copy readme and assets
+        run: |
+          cp README.md dist/index.md
+          cp -r assets dist/assets
+          cp scripts/serve/plink.ico dist/favicon.ico
+
+      # New step to copy "dist" to "docs"
+      - name: copy dist to docs
+        run: |
+          # Remove existing docs folder if needed
+          rm -rf docs
+          # Copy entire dist folder to docs
+          cp -r dist docs
+
+      - name: build pages
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: dist
+          destination: built
+
+      - name: upload pages artifact
+        uses: actions/upload-pages-artifact@v3
+        if: ${{ !env.ACT }}
+        with:
+          path: built
