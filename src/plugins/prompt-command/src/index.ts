@@ -60,7 +60,7 @@ export const onLoad = () => {
       const apiKey = storage.openai_api_key;
       if (!apiKey) {
         showToast("OpenAI API key not set. Please set it in the plugin settings.", getAssetIDByName("ic_error"));
-        return { content: "❌ OpenAI API key not set. Please set it in the plugin settings." };
+        return { content: "" };
       }
 
       try {
@@ -68,7 +68,7 @@ export const onLoad = () => {
         return { content: response };
       } catch (error) {
         showToast(`❌ Error: ${(error as Error).message}`, getAssetIDByName("ic_error"));
-        return { content: `❌ Error: ${(error as Error).message}` };
+        return { content: `` };
       }
     },
   });
@@ -77,4 +77,6 @@ export const onLoad = () => {
 export const onUnload = () => {
   if (chatGPTCommand) chatGPTCommand();
 };
+
+export { default as settings } from "./Settings";
 
