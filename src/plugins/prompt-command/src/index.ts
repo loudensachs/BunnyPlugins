@@ -75,7 +75,7 @@ export const onLoad = () => {
       }
     
       if (typeof prompt !== "string") {
-        showToast("❌ Error: Prompt must be a string.", getAssetIDByName("ic_error"));
+        showToast("❌ Error: Prompt must be a string. Type is: " + typeof prompt, getAssetIDByName("ic_error"));
         return { content: "" };
       }
     
