@@ -67,28 +67,31 @@ export const onLoad = () => {
         required: true,
       },
     ],
-    execute: async ([prompt], ctx) => {
+    execute: async ([{ value: prompt }], ctx) => {
       const apiKey = cstorage.openai_api_key;
       if (!apiKey) {
         showToast("OpenAI API key not set. Please set it in the plugin settings.", getAssetIDByName("ic_error"));
-        return { content: "" };
+        return { content: "Error: API key not set." };
       }
     
-      if (typeof prompt.content !== "string") {
-        showToast("❌ Error: Prompt must be a string. Type is: " + typeof prompt.content, getAssetIDByName("ic_error"));
-        return { content: prompt.content.toString() };
+      if (typeof prompt !== "string") {
+        const errorMessage = `❌ Error: Prompt must be a string. Received type: ${typeof prompt}`;
+        showToast(errorMessage, getAssetIDByName("ic_error"));
+        return { content: errorMessage };
       }
     
       try {
-        const response = await callChatGPT(prompt.content, apiKey);
+        const response = await callChatGPT(prompt, apiKey);
         return { content: response };
       } catch (error) {
-        showToast(`❌ Error: ${(error as Error).message}`, getAssetIDByName("ic_error"));
-        return { content: "" };
+        const errorMessage = `❌ Error: ${(error as Error).message}`;
+        showToast(errorMessage, getAssetIDByName("ic_error"));
+        return { content: errorMessage };
       }
-    },    
+    },
   });
 };
+
 
 export const onUnload = () => {
   if (chatGPTCommand) chatGPTCommand();
