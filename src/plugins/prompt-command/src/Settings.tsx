@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ReactNative } from "@vendetta/metro/common";
 import { Forms } from "@vendetta/ui/components";
 import { showToast } from "@vendetta/ui/toasts";
@@ -9,9 +9,13 @@ import { useProxy } from "@vendetta/storage";
 const { FormIcon, FormTextRow, FormButtonRow } = Forms;
 
 export default () => {
+  // Use useProxy to make the component reactive to storage changes
   useProxy(storage);
-  const [apiKey, setApiKey] = useState(storage.openai_api_key || "");
 
+  // Directly access the API key from storage
+  const apiKey = storage.openai_api_key || "";
+
+  // Function to save the API key
   const saveApiKey = () => {
     if (!apiKey.trim()) {
       showToast("API key cannot be empty.", getAssetIDByName("ic_error"));
@@ -21,10 +25,15 @@ export default () => {
     showToast("OpenAI API key saved.", getAssetIDByName("ic_success"));
   };
 
+  // Function to clear the API key
   const clearApiKey = () => {
     storage.openai_api_key = "";
-    setApiKey("");
     showToast("OpenAI API key cleared.", getAssetIDByName("ic_success"));
+  };
+
+  // Handle text changes by updating the storage directly
+  const onChangeText = (text) => {
+    storage.openai_api_key = text;
   };
 
   return (
@@ -33,7 +42,7 @@ export default () => {
         label="OpenAI API Key"
         placeholder="Enter your OpenAI API key"
         value={apiKey}
-        onChangeText={setApiKey}
+        onChangeText={onChangeText}
         secureTextEntry
         leading={<FormIcon source={getAssetIDByName("ic_key")} />}
       />
