@@ -81,7 +81,7 @@ export const onLoad = () => {
       }
     
       try {
-        var fullPrompt = "A discord user has invoked the command 'generate' which should return a generated message. They prompted, this: " + prompt;
+        var fullPrompt = "A discord user has invoked the command 'generate' which should return a generated message Respond with only the message that should be sent by the user. They prompted this: " + prompt;
         const response = await callChatGPT(fullPrompt, apiKey);
         var responseMSG = response;
         if (storage.signature === true) {
