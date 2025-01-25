@@ -26,6 +26,7 @@ const { FormIcon, FormSwitchRow, FormRow } = Forms;
 
 // Initialize default value for the setting if not present
 storage.signature ??= true;
+storage.includePrompt ??= true;
 
 export default () => {
   useProxy(storage);
@@ -33,6 +34,12 @@ export default () => {
 
   return (
     <ReactNative.ScrollView>
+      <FormSwitchRow
+        label="Include Prompt in Response"
+        leading={<FormIcon source={getAssetIDByName("ic_edit_24px")} />}
+        onValueChange={(v) => (storage.includePrompt = v)}
+        value={storage.includePrompt}
+      />
       <FormSwitchRow
         label="GPT Signature"
         leading={<FormIcon source={getAssetIDByName("ic_edit_24px")} />}
