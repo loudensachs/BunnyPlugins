@@ -88,7 +88,7 @@ export const onLoad = () => {
           responseMSG += "\n-# This message was generated with GPT-4o";
         }
         if (storage.includePrompt === true) {
-          responseMSG = '"' + responseMSG + '"' + "\n" + prompt;
+          responseMSG = '"-# ' + prompt + '"' + "\n" + responseMSG;
         }
         return { content: responseMSG };
       } catch (error) {

@@ -1,1 +1,1 @@
-{"name":"Prompt Command","description":"A plugin to generate messages with GPT-4o","authors":[{"name":"LSCommit","id":""}],"main":"index.js","vendetta":{"icon":"ic_message"},"hash":"4b4309fbab1796132ab6521f43c477376544e0dd58be66191c0c2d896bb66ca0"}
+{"name":"Prompt Command","description":"A plugin to generate messages with GPT-4o","authors":[{"name":"LSCommit","id":""}],"main":"index.js","vendetta":{"icon":"ic_message"},"hash":"7064187931b8070f1c0a6e1ab1be1004fb4e6fa6215671184531932ee01140e5"}
